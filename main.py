@@ -41,7 +41,7 @@ class TypingTrainer:
         subtitle = tk.Label(
             self.root,
             text="Перевір свою швидкість друку!",
-            font=("Arial", 14),
+            font=("Arial", 16),
             fg="#a0aec0",
             bg="#171923"
         )
@@ -50,7 +50,7 @@ class TypingTrainer:
         mode_label = tk.Label(
             self.root,
             text="Вибери режим тренування:",
-            font=("Arial", 12, "bold"),
+            font=("Arial", 14, "bold"),
             fg="white",
             bg="#171923"
         )
@@ -70,7 +70,7 @@ class TypingTrainer:
             selectcolor="#252a3a",
             activebackground="#171923",
             activeforeground="white",
-            font=("Arial", 11),
+            font=("Arial", 12),
             bd=0,
             highlightthickness=0,
             relief="flat",
@@ -87,7 +87,7 @@ class TypingTrainer:
             selectcolor="#252a3a",
             activebackground="#171923",
             activeforeground="white",
-            font=("Arial", 11),
+            font=("Arial", 12),
             bd=0,
             highlightthickness=0,
             relief="flat",
@@ -95,18 +95,93 @@ class TypingTrainer:
 
         self.custom_text = tk.Text(
             self.root,
-            height=4,
-            width=90,
-            font=("Arial", 11),
+            height=3,
+            width=80,
+            font=("Arial", 12),
             bg="#252a3a",
             fg="white",
             insertbackground="white",
             wrap="word",
             padx=10,
-            pady=8
+            pady=10
         )
         self.custom_text.pack(pady=(20, 0))
 
+        self.text_label = tk.Label(
+            self.root,
+            text="Тут з'явиться текст для друку",
+            font=("Arial", 12),
+            fg="white",
+            bg="#252a3a",
+            height=3,
+            width=80,
+            padx=10,
+            pady=10,
+        )
+        self.text_label.pack(pady=(40, 0))
+
+        input_label = tk.Label(
+            self.root,
+            text="Введи текст нижче:",
+            font=("Arial", 14, "bold"),
+            fg="white",
+            bg="#171923",
+
+        )
+        input_label.pack(pady=(40, 0))
+
+        self.input_field = tk.Text(
+            self.root,
+            font=("Arial", 12),
+            bg="#252a3a",
+            fg="white",
+            insertbackground="white",
+            wrap="word",
+            height=3,
+            width=80,
+            padx=10,
+            pady=10
+        )
+        self.input_field.pack(pady=(10))
+
+        self.input_field.bind(
+            "<KeyRelease>",
+            self.check_input
+        )
+
+        self.stats_frame = tk.Frame(
+            self.root,
+            bg="#171923"
+        )
+        self.stats_frame.pack(pady=12)
+
+        self.timer_label = tk.Label(
+            self.stats_frame,
+            text="Час: 0 сек.",
+            font=("Arial", 16, "bold"),
+            fg="#68d391",
+            bg="#171923",
+        )
+        self.timer_label.pack(side="left", padx=10)
+
+        self.stats_label = tk.Label(
+            self.stats_frame,
+            text="Швидкість: 0 WPM    Точність: 0%",
+            font=("Arial", 16, "bold"),
+            fg="#68d391",
+            bg="#171923"
+        )
+        self.stats_label.pack(side="left", padx=10)
+
+        self.result_label = tk.Label(
+            self.root,
+            text="Вибери текст і почни тренування",
+            font=("Arial", 14),
+            fg="#a0aec0",
+            bg="#171923"
+        )
+        self.result_label.pack(pady=5)
+ 
         buttons_frame = tk.Frame(self.root, bg="#171923")
         buttons_frame.pack(pady=(20, 0))
 
@@ -142,87 +217,6 @@ class TypingTrainer:
         )
 
         self.stop_button.pack(side="left", padx=10)
-
-        self.timer_label = tk.Label(
-            self.root,
-            text="Час: 0 сек.",
-            font=("Arial", 16, "bold"),
-            fg="#68d391",
-            bg="#171923",
-        )
-        self.timer_label.pack(pady=10)
-
-        self.text_label = tk.Label(
-            self.root,
-            text="Тут з'явиться текст для друку",
-            font=("Arial", 12),
-            fg="white",
-            bg="#252a3a",
-            justify="left",
-            width=80,
-            padx=20,
-            pady=20
-        )
-        self.text_label.pack(padx=40, pady=(5))
-
-        input_label = tk.Label(
-            self.root,
-            text="Введи текст нижче:",
-            font=("Arial", 12, "bold"),
-            fg="white",
-            bg="#171923"
-        )
-        input_label.pack(pady=(15, 5))
-
-        self.input_field = tk.Text(
-            self.root,
-            height=4,
-            width=80,
-            font=("Arial", 12),
-            bg="#252a3a",
-            fg="white",
-            insertbackground="white",
-            wrap="word",
-            padx=10,
-            pady=10
-        )
-        self.input_field.pack(pady=(10))
-
-        self.input_field.bind(
-            "<KeyRelease>",
-            self.check_input
-        )
-
-        self.stats_label = tk.Label(
-            self.root,
-            text="Швидкість: 0 WPM     Точність: 0%",
-            font=("Arial", 14, "bold"),
-            fg="#68d391",
-            bg="#171923"
-        )
-        self.stats_label.pack(pady=12)
-
-        self.result_label = tk.Label(
-            self.root,
-            text="Вибери текст і почни тренування",
-            font=("Arial", 11),
-            fg="#a0aec0",
-            bg="#171923"
-        )
-        self.result_label.pack(pady=5)
-
-        self.restart_button = tk.Button(
-            self.root,
-            text="Спробувати ще раз",
-            font=("Arial", 12, "bold"),
-            bg="#4a5568",
-            fg="white",
-            relief="flat",
-            padx=20,
-            pady=10,
-            command=self.start_test
-        )
-        self.restart_button.pack(pady=10)
 
         self.update_mode()
 
@@ -265,7 +259,7 @@ class TypingTrainer:
         self.timer_label.config(text="Час: 0 сек.")
 
         self.stats_label.config(
-            text="Швидкість: 0 WPM Точність: 0%"
+            text="Швидкість: 0 WPM    Точність: 0%"
         )
 
         self.result_label.config(text="Почни друкувати!")
@@ -308,7 +302,7 @@ class TypingTrainer:
         errors = len(typed_text) - correct
 
         self.stats_label.config(
-            text=f"Швидкість: {speed:.0f} WPM     "
+            text=f"Швидкість: {speed:.0f} WPM    "
                  f"Точність: {accuracy:.1f}%"
         )
 
@@ -372,7 +366,7 @@ class TypingTrainer:
             self.timer_label.config(text="Час: 0 сек.")
 
             self.stats_label.config(
-                text="Швидкість: 0 WPM     Точність: 0%"
+                text="Швидкість: 0 WPM    Точність: 0%"
             )
 
             self.result_label.config(
@@ -401,7 +395,7 @@ class TypingTrainer:
         )
 
         self.stats_label.config(
-            text=f"Швидкість: {speed:.0f} WPM     "
+            text=f"Швидкість: {speed:.0f} WPM    "
                  f"Точність: {accuracy:.1f}%"
         )
 
