@@ -93,6 +93,16 @@ class TypingTrainer:
             relief="flat",
         ).pack(side="left", padx=10)
 
+        input_label = tk.Label(
+            self.root,
+            text="Введи власний текст нижче:",
+            font=("Arial", 12, "bold"),
+            fg="white",
+            bg="#171923",
+
+        )
+        input_label.pack(pady=(20, 0))
+
         self.custom_text = tk.Text(
             self.root,
             height=3,
@@ -105,7 +115,7 @@ class TypingTrainer:
             padx=10,
             pady=10
         )
-        self.custom_text.pack(pady=(20, 0))
+        self.custom_text.pack(pady=(10, 0))
 
         self.text_label = tk.Label(
             self.root,
@@ -123,7 +133,7 @@ class TypingTrainer:
         input_label = tk.Label(
             self.root,
             text="Введи текст нижче:",
-            font=("Arial", 14, "bold"),
+            font=("Arial", 12, "bold"),
             fg="white",
             bg="#171923",
 
@@ -402,8 +412,7 @@ class TypingTrainer:
         self.result_label.config(
             text=f"Тренування завершено! Помилок: {errors}"
         )
-
-
+        
 if __name__ == "__main__":
     root = tk.Tk()
     app = TypingTrainer(root)
