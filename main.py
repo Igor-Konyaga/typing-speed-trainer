@@ -157,7 +157,7 @@ class TypingTrainer:
 
         self.timer_label = tk.Label(
             self.stats_frame,
-            text="Час: 0 сек.",
+            text="Час: 0 сек",
             font=("Arial", 16, "bold"),
             fg="#68d391",
             bg="#171923",
@@ -256,7 +256,7 @@ class TypingTrainer:
         self.input_field.delete("1.0", tk.END)
         self.input_field.focus_set()
 
-        self.timer_label.config(text="Час: 0 сек.")
+        self.timer_label.config(text="Час: 0 сек")
 
         self.stats_label.config(
             text="Швидкість: 0 WPM    Точність: 0%"
@@ -321,7 +321,7 @@ class TypingTrainer:
         elapsed = int(time.time() - self.start_time)
 
         self.timer_label.config(
-            text=f"Час: {elapsed} сек."
+            text=f"Час: {elapsed} сек"
         )
 
         self.timer_id = self.root.after(
@@ -363,7 +363,7 @@ class TypingTrainer:
 
         # Якщо користувач нічого не ввів
         if not typed_text or self.start_time is None:
-            self.timer_label.config(text="Час: 0 сек.")
+            self.timer_label.config(text="Час: 0 сек")
 
             self.stats_label.config(
                 text="Швидкість: 0 WPM    Точність: 0%"
@@ -391,7 +391,7 @@ class TypingTrainer:
         errors = len(typed_text) - correct
 
         self.timer_label.config(
-            text=f"Час: {elapsed:.1f} сек."
+            text=f"Час: {elapsed:.1f} сек"
         )
 
         self.stats_label.config(
